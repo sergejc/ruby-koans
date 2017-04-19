@@ -13,8 +13,14 @@
 # and
 #   about_triangle_project_2.rb
 #
-def triangle(*sizes)
-    case sizes.uniq.length
+def triangle(*arg)
+    arg.sort!
+
+    raise TriangleError if arg.max <= 0
+    raise TriangleError if arg.min < 0
+    raise TriangleError if arg[0] + arg[1] <= arg[2]
+
+    case arg.uniq.length
     when 1 then :equilateral
     when 2 then :isosceles
     when 3 then :scalene
